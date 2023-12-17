@@ -1,0 +1,50 @@
+<div class="list row">
+  <div class="col-md-12">
+    <h4>Спосок викладачів</h4>
+    <div class="input-group mb-3">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Пошук"
+        [(ngModel)]="title"
+        (input)="searchTitle()"
+      />
+      <button type="submit" class="btn badge-success ml-2" (click)="editUser()">Створити</button>
+    </div>
+  </div>
+
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item border-0">
+        <div class="row">
+          <div class="col-md-4 font-weight-bold">Прізвище</div>
+          <div class="col-md-4 font-weight-bold">Ім'я</div>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li
+        class="list-group-item"
+        *ngFor="let user of users;"
+      >
+      <div class="row">
+        <div class="col-md-4">
+          {{ user.lastName }}
+        </div>
+        <div class="col-md-4">
+          {{ user.firstName }}
+        </div>
+        <div class="col text-right">
+          <button (click)="editUser(user.id)" class="btn p-0 pr-2"><img class="action-icon-25" src="assets/settings.svg"></button>
+          <button (click)="deleteUser(user.id)" class="btn p-0"><img class="action-icon-30" src="assets/delete-1.svg"></button>
+        </div>
+      </div>
+        
+      </li>
+    </ul>
+
+  </div>
+</div>

@@ -1,0 +1,39 @@
+<div>
+  <nav class="navbar navbar-expand navbar-dark bg-dark">
+    <a routerLink="users" class="navbar-brand">Облік навантаження робочих груп</a>
+    <div class="navbar-nav mr-auto">
+      <!-- show if admin -->
+      <li *ngIf="userService.isCurrentUserAdmin()" class="nav-item">
+        <a routerLink="users" class="nav-link">Викладачі</a>
+      </li>
+      <!-- show if admin -->
+      <li *ngIf="userService.isCurrentUserAdmin()" class="nav-item">
+        <a routerLink="groups" class="nav-link">Групи</a>
+      </li>
+      <!-- show if admin -->
+      <li *ngIf="userService.isCurrentUserAdmin()" class="nav-item">
+        <a routerLink="subjects" class="nav-link">Дисципліни</a>
+      </li>
+      <!-- show if admin -->
+      <li *ngIf="userService.isCurrentUserAdmin()" class="nav-item">
+        <a routerLink="rooms" class="nav-link">Аудиторії</a>
+      </li>
+      <!-- show if logged in -->
+      <li *ngIf="userService.getSessionUser()" class="nav-item">
+        <a routerLink="schedule" class="nav-link">Розклад</a>
+      </li>
+    </div>
+    <!-- show if logged in -->
+    <div *ngIf="userService.getSessionUser()" class="nav-item d-flex">
+      <a routerLink="profile" class="nav-link">Профіль</a>
+    </div>
+    <!-- show if logged in -->
+    <div *ngIf="userService.getSessionUser()" class="nav-item d-flex">
+      <a href="javascript: void(0)" (click)="logout()" class="nav-link">Вийти</a>
+    </div>
+  </nav>
+
+  <div class="container mt-3">
+    <router-outlet></router-outlet>
+  </div>
+</div>

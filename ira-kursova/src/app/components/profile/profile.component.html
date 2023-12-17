@@ -1,0 +1,61 @@
+  <div class="edit-form">
+    <h4>Профіль</h4>
+    <div class="form-group">
+      <label for="title">Ім'я</label>
+      <input
+        #firstInput
+        type="text"
+        class="form-control"
+        [(ngModel)]="model.firstName"
+        name="firstName"
+      />
+    </div>
+    <div class="form-group">
+      <label for="description">Прізвище</label>
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="model.lastName"
+      />
+    </div>
+    <div class="form-group">
+      <label for="description">По батькові</label>
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="model.middleName"
+      />
+    </div>
+    <div class="form-group">
+      <label for="description">Пошта</label>
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="model.email"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="description">Пароль</label>
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="password"
+      />
+    </div>
+
+    <div *ngIf="message" class="alert alert-success" role="alert">
+      {{ message }}
+    </div>
+
+    <div class="text-right pt-3">
+      <button
+        type="submit"
+        class="btn badge-success mr-2"
+        (click)="save()"
+      >
+        Записати
+      </button>
+    </div>
+
+  </div>

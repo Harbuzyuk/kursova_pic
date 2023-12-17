@@ -1,0 +1,34 @@
+<div class="edit-form">
+  <h4>Вхід в систему</h4>
+  <div class="form-group">
+    <label for="title">Пошта</label>
+    <input
+      #firstInput
+      type="text"
+      class="form-control"
+      [(ngModel)]="email"
+      name="firstName"
+    />
+  </div>
+  <div class="form-group">
+    <label for="description">Пароль</label>
+    <input
+      type="text"
+      class="form-control"
+      [(ngModel)]="password"
+    />
+  </div>
+
+  <div *ngIf="showInvalidDataMessage" class="alert alert-danger" role="alert">
+    Невірний пароль або пошта.
+  </div>
+
+  <button
+    type="submit"
+    class="btn badge-secondary mr-2 float-left"
+    (click)="login()"
+  >
+    Увійти
+  </button>
+
+</div>

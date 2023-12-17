@@ -1,0 +1,50 @@
+<div class="list row">
+  <div class="col-md-12">
+    <h4>Спосок аудиторій</h4>
+    <div class="input-group mb-3">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Пошук"
+        [(ngModel)]="title"
+        (input)="searchTitle()"
+      />
+      <button type="submit" class="btn badge-success ml-2" (click)="editRoom()">Створити</button>
+    </div>
+  </div>
+
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item border-0">
+        <div class="row">
+            <div class="col-md-4 font-weight-bold">Аудиторія</div>
+            <div class="col-md-4 font-weight-bold">Корпус</div>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li
+        class="list-group-item"
+        *ngFor="let room of rooms;"
+      >
+      <div class="row">
+        <div class="col-md-4">
+          {{ room.name }}
+        </div>
+        <div class="col-md-4">
+          {{ room.corpus }}
+        </div>
+        <div class="col text-right">
+          <button (click)="editRoom(room.id)" class="btn p-0 pr-2"><img class="action-icon-25" src="assets/settings.svg"></button>
+          <button (click)="deleteRoom(room.id)" class="btn p-0"><img class="action-icon-30" src="assets/delete-1.svg"></button>
+        </div>
+      </div>
+        
+      </li>
+    </ul>
+
+  </div>
+</div>

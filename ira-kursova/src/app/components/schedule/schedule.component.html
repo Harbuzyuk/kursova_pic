@@ -1,0 +1,113 @@
+  <div *ngIf="this.userService.isCurrentUserAdmin()" class="edit-form">
+    <h4>Розклад</h4>
+
+    <div class="form-group">
+      <label for="subjects">Дисципліна</label>
+      <ng-select #firstInput [items]="subjects" 
+           bindLabel="name" 
+           bindValue="id"
+           [multiple]="false"
+           [(ngModel)]="subjectId">
+      </ng-select>
+    </div>
+    <div class="form-group">
+      <label for="subjects">Група</label>
+      <ng-select [items]="groups" 
+           bindLabel="name" 
+           bindValue="id"
+           [multiple]="false"
+           [(ngModel)]="groupId">
+      </ng-select>
+    </div>
+    <div class="form-group">
+      <label for="count">Кількість пар на тиждень</label>
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="count"
+        name="count"
+      />
+    </div>
+
+    <div class="text-right pt-3">
+   
+      <button class="btn badge-success float-left" (click)="generate()">
+        Генерувати
+      </button>
+
+      <button class="btn badge-danger" (click)="delete()">
+        Видалити
+      </button>
+    </div>
+  
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <ul class="list-group">
+        <li
+          class="list-group-item border-0"
+        >
+        <div class="row">
+          <div class="col-md-2 font-weight-bold">
+            День/Підтвердження
+          </div>
+          <div class="col-md-1 font-weight-bold">
+            Пара
+          </div>
+          <div class="col-md-2 font-weight-bold">
+            Група
+          </div>
+          <div class="col-md-2 font-weight-bold">
+            Викладач
+          </div>
+          <div class="col-md-2 font-weight-bold">
+            Аудиторія
+          </div>
+          <div class="col-md-3 font-weight-bold">
+            Дисципліна
+          </div>
+        </div>
+          
+        </li>
+      </ul>
+
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <ul class="list-group">
+        <li
+          class="list-group-item"
+          *ngFor="let slot of slots;"
+        >
+        <div class="row">
+          <div class="col-md-2">
+            {{ getDow(slot.dayOfWeek) }}
+            <div class="float-left pl-0 pr-2">
+              <input class="" type="checkbox" [(ngModel)]="slot.approved" (ngModelChange)="saveApprovedState(slot)">
+            </div>
+          </div>
+          <div class="col-md-1">
+            {{ slot.slotNumber }}
+          </div>
+          <div class="col-md-2">
+            {{ (groupService.get(slot.groupId) | async)?.name }}
+          </div>
+          <div class="col-md-2">
+            {{ (userService.get(slot.userId) | async)?.lastName }} {{ (userService.get(slot.userId) | async)?.firstName?.substring(0, 1) }}.
+          </div>
+          <div class="col-md-2">
+            {{ (roomService.get(slot.roomId) | async)?.name }}
+          </div>
+          <div class="col-md-3">
+            {{ (subjectService.get(slot.subjectId) | async)?.name }}
+          </div>
+        </div>
+          
+        </li>
+      </ul>
+
+    </div>
+  </div>
